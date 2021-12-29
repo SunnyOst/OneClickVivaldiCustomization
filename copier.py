@@ -35,8 +35,10 @@ browser_html_path = os.path.join(vivaldi_resources_path, "browser.html")
 # 10
 with open(browser_html_path, "r") as browser_html:
     browser_html_content = browser_html.read()
-    browser_html_content = browser_html_content.replace("</head>", "  <link rel=\"stylesheet\" href=\"" + my_css + "\" />\n  </head>")
-    browser_html_content = browser_html_content.replace("</body>", "  <script src=\"" + my_js + "\"></script>\n  </body>")
+    if(browser_html_content.find("href=\"" + my_css)==-1):
+     browser_html_content = browser_html_content.replace("</head>", "  <link rel=\"stylesheet\" href=\"" + my_css + "\" />\n  </head>")
+    if(browser_html_content.find("src=\"" + my_js)==-1):
+     browser_html_content = browser_html_content.replace("</body>", "  <script src=\"" + my_js + "\"></script>\n  </body>")
 with open(browser_html_path, "w") as browser_html:
     browser_html.write(browser_html_content)
 # 12
